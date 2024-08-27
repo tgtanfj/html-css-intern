@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="output.css" rel="stylesheet" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Inknut Antiqua Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- DM Sans Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Roboto Condensed Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @layer base {
+        .font-inknut {
+          font-family: "Inknut Antiqua", serif;
+        }
+        .font-dm-sans {
+          font-family: "DM Sans", sans-serif;
+        }
+        .font-roboto-condensed {
+          font-family: "Roboto Condensed", sans-serif;
+        }
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="">
+      <section class="w-full h-[700px] bg-black pt-[30px] px-[180px] relative">
+        <nav class="flex items-center justify-between text-white">
+          <p class="font-bold text-2xl">AGENCY</p>
+          <div
+            class="flex items-center justify-between gap-20 text-[16px] font-dm-sans font-light"
+          >
+            <p>About</p>
+            <p>Portfolio</p>
+            <p>Contact</p>
+          </div>
+        </nav>
+        <div class="w-full h-full flex items-center justify-start text-white">
+          <div class="flex flex-col max-w-[65%] gap-14">
+            <h1
+              class="text-[72px] font-extrabold uppercase leading-none font-inknut z-10 text-shadow"
+            >
+              We Create Amazing Sites With Ease
+            </h1>
+            <div class="flex items-center justify-start gap-10">
+              <img class="w-[56px] h-[56px]" src="./public/Object.png" alt="" />
+              <span
+                class="text-[16px] uppercase flex-wrap max-w-[40%] leading-8 font-roboto-condensed tracking-widest"
+                >A peep at some distant orb has power to raise and purify</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="absolute w-[570px] h-[624px] bg-[#FF564F] top-[340px] left-[670px] rounded-md"></div>
+      </section>
+    </main>
+  </body>
+</html>
