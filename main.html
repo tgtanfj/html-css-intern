@@ -34,6 +34,25 @@
           font-family: "Roboto Condensed", sans-serif;
         }
       }
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-2px);
+        }
+        50% {
+          transform: translateX(2px);
+        }
+        75% {
+          transform: translateX(-2px);
+        }
+      }
+
+      .shake {
+        animation: shake 0.3s ease-in-out;
+      }
     </style>
     <title>Document</title>
   </head>
@@ -55,10 +74,60 @@
               <p>Contact</p>
             </div>
             <img
+              id="menu-icon"
               src="./public/menu.png"
               class="h-[30px] w-[28px] sm:hidden block cursor-pointer"
               alt=""
             />
+
+            <div
+              id="sidebar"
+              class="fixed top-0 z-[10999] left-0 w-64 h-full bg-white text-black transform -translate-x-full transition-transform duration-300 ease-in-out"
+            >
+              <button id="close-btn" class="p-4">
+                <!-- Nút X -->
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+              <div class="p-4">
+                <div
+                  class="flex flex-col items-start justify-start text-[16px] font-dm-sans font-light"
+                >
+                  <p
+                    class="cursor-pointer mb-[15px] w-full p-1 hover:bg-[#f3f1f1] border-b-2 border-transparent hover:border-b-2 hover:border-black"
+                  >
+                    About
+                  </p>
+                  <p
+                    class="cursor-pointer mb-[15px] w-full p-1 hover:bg-[#f3f1f1] border-b-2 border-transparent hover:border-b-2 hover:border-black"
+                  >
+                    Portfolio
+                  </p>
+                  <p
+                    class="cursor-pointer w-full p-1 hover:bg-[#f3f1f1] border-b-2 border-transparent hover:border-b-2 hover:border-black"
+                  >
+                    Contact
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="overlay"
+              class="fixed inset-0 bg-black opacity-50 z-[9999] hidden"
+            ></div>
           </nav>
           <div
             class="w-full h-full flex items-center justify-start text-white pt-[145px] sm:mb-0 mb-[195px]"
@@ -928,11 +997,44 @@
               </div>
             </div>
             <div class="">
-              <img src="./public/social.png" class="w-[160px] h-[48px] sm:mb-0 mb-[100px]" alt="">
+              <img
+                src="./public/social.png"
+                class="w-[160px] h-[48px] sm:mb-0 mb-[100px]"
+                alt=""
+              />
             </div>
           </div>
         </div>
       </section>
     </main>
   </body>
+  <script>
+    const menuIcon = document.getElementById("menu-icon");
+    const sidebar = document.getElementById("sidebar");
+    const closeBtn = document.getElementById("close-btn");
+    const overlay = document.getElementById("overlay");
+
+    menuIcon.addEventListener("click", () => {
+      menuIcon.classList.add("shake");
+      setTimeout(() => {
+        menuIcon.classList.remove("shake");
+      }, 300);
+
+      sidebar.classList.remove("-translate-x-full");
+      sidebar.classList.add("translate-x-0");
+      overlay.classList.remove("hidden");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      sidebar.classList.add("-translate-x-full");
+      sidebar.classList.remove("translate-x-0");
+      overlay.classList.add("hidden");
+    });
+
+    overlay.addEventListener("click", () => {
+      sidebar.classList.add("-translate-x-full");
+      sidebar.classList.remove("translate-x-0");
+      overlay.classList.add("hidden");
+    });
+  </script>
 </html>
