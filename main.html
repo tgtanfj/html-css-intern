@@ -22,6 +22,10 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <style>
       @layer base {
         .font-inknut {
@@ -52,6 +56,30 @@
 
       .shake {
         animation: shake 0.3s ease-in-out;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: start;
+        font-size: 18px;
+        border-radius: 0.125rem;
+      }
+
+      .swiper-pagination-bullet {
+        background-color: #9c9696;
+        width: 8px;
+        height: 8px;
+        opacity: 0.5;
+      }
+
+      .swiper-pagination-bullet-active {
+        background-color: #9013fe;
+        opacity: 1;
+        transform: scale(1.3);
       }
     </style>
     <title>Document</title>
@@ -523,43 +551,79 @@
                 resolved, contrary to my first intention, to make the being.
               </div>
             </div>
-            <div class="grid grid-cols-2 gap-11 mb-[80px]">
-              <div
-                class="w-[570px] h-[288px] bg-[#9013FE] rounded-sm flex flex-col items-start justify-center p-[50px] gap-6"
-              >
-                <img src="./public/Object2.png" class="w-[48px] h-[48px]" />
-                <p
-                  class="uppercase font-[700] text-white text-[24px] font-roboto-condensed"
-                >
-                  white label
-                </p>
-                <p class="text-[#FFFFFF80] text-[16px] font-dm-sans">
-                  Minuteness of the parts formed a great hindrance to my speed,
-                  resolved, contrary to my first intention, to make the being.
-                </p>
+
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper mb-[80px]">
+                <div class="swiper-slide sm:w-auto w-full">
+                  <div
+                    class="w-full h-auto sm:h-[288px] bg-[#9013FE] rounded-sm flex flex-col items-start justify-center p-[50px] gap-6"
+                  >
+                    <img src="./public/Object2.png" class="w-[48px] h-[48px]" />
+                    <p
+                      class="uppercase font-[700] text-white text-[24px] font-roboto-condensed"
+                    >
+                      white label
+                    </p>
+                    <p class="text-[#FFFFFF80] text-[16px] font-dm-sans">
+                      Minuteness of the parts formed a great hindrance to my
+                      speed, resolved, contrary to my first intention, to make
+                      the being.
+                    </p>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div
+                    class="w-full h-auto sm:h-[288px] bg-[#417505] rounded-sm flex flex-col items-start justify-center p-[50px] gap-6"
+                  >
+                    <img src="./public/Object3.png" class="w-[48px] h-[48px]" />
+                    <p
+                      class="uppercase font-[700] text-white text-[24px] font-roboto-condensed"
+                    >
+                      Code export
+                    </p>
+                    <p class="text-[#FFFFFF80] text-[16px] font-dm-sans">
+                      Minuteness of the parts formed a great hindrance to my
+                      speed, resolved, contrary to my first intention, to make
+                      the being.
+                    </p>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div
+                    class="w-full h-auto sm:h-[288px] bg-[#F8E71C] rounded-sm flex flex-col items-start justify-center p-[50px] gap-6"
+                  >
+                    <img src="./public/Object2.png" class="w-[48px] h-[48px]" />
+                    <p
+                      class="uppercase font-[700] text-white text-[24px] font-roboto-condensed"
+                    >
+                      white label
+                    </p>
+                    <p class="text-[#FFFFFF80] text-[16px] font-dm-sans">
+                      Minuteness of the parts formed a great hindrance to my
+                      speed, resolved, contrary to my first intention, to make
+                      the being.
+                    </p>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div
+                    class="w-full h-auto sm:h-[288px] bg-[#FF564F] rounded-sm flex flex-col items-start justify-center p-[50px] gap-6"
+                  >
+                    <img src="./public/Object3.png" class="w-[48px] h-[48px]" />
+                    <p
+                      class="uppercase font-[700] text-white text-[24px] font-roboto-condensed"
+                    >
+                      white label
+                    </p>
+                    <p class="text-[#FFFFFF80] text-[16px] font-dm-sans">
+                      Minuteness of the parts formed a great hindrance to my
+                      speed, resolved, contrary to my first intention, to make
+                      the being.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div
-                class="w-[570px] h-[288px] bg-[#417505] rounded-sm flex flex-col items-start justify-center p-[50px] gap-7"
-              >
-                <img src="./public/Object3.png" class="w-[48px] h-[48px]" />
-                <p
-                  class="uppercase font-[700] text-white text-[24px] font-roboto-condensed"
-                >
-                  code export
-                </p>
-                <p class="text-[#FFFFFF80] text-[16px] font-dm-sans">
-                  Minuteness of the parts formed a great hindrance to my speed,
-                  resolved, contrary to my first intention, to make the being.
-                </p>
-              </div>
-            </div>
-            <div class="w-full flex items-center justify-center">
-              <div class="w-[80px] grid grid-cols-4 ml-[34px]">
-                <div class="w-1 h-1 rounded-full bg-[#9013FE]"></div>
-                <div class="w-1 h-1 rounded-full bg-[#5a5a5a]"></div>
-                <div class="w-1 h-1 rounded-full bg-[#5a5a5a]"></div>
-                <div class="w-1 h-1 rounded-full bg-[#5a5a5a]"></div>
-              </div>
+              <div class="swiper-pagination"></div>
             </div>
           </div>
         </div>
@@ -689,13 +753,13 @@
         </div>
       </section>
       <section
-        class="w-full h-full bg-white flex flex-col items-center justify-center"
+        class="w-full h-full bg-white flex flex-col items-center justify-center overflow-hidden"
       >
         <div
-          class="relative w-full xl:max-w-[1520px] h-auto bg-black px-[20px] sm:px-[180px] text-white"
+          class="flex-col flex sm:flex-row items-center justify-between w-full xl:max-w-[1520px] h-auto bg-black px-[20px] sm:px-[180px] text-white"
         >
           <div
-            class="sm:w-[40%] w-[100%] flex flex-col gap-[35px] mt-[110px] sm:mt-[160px] mb-[190px] sm:mb-[110px]"
+            class="sm:w-[40%] w-[100%] flex flex-col gap-[35px] mt-[110px] sm:mt-[160px] mb-[60px] sm:mb-[110px]"
           >
             <p
               class="font-inknut font-[900] text-white sm:leading-[65px] leading-[50px] text-[40px] sm:text-[56px] uppercase flex-1"
@@ -703,14 +767,14 @@
               What Our Clients Say
             </p>
             <p
-              class="font-roboto-condensed font-[400] text-[16px] uppercase mb-[20px] tracking-[4px]"
+              class="font-roboto-condensed font-[400] text-[16px] uppercase mb-0 sm:mb-[20px] tracking-[4px]"
             >
               Testimonials
             </p>
           </div>
 
           <div
-            class="absolute z-50 left-[20px] top-[340px] sm:top-[140px] sm:left-[810px] flex items-center justify-center gap-8"
+            class="z-50 -mb-[330px] mr-[0px] sm:-mb-[330px] sm:-mr-[450px] flex items-center justify-center gap-8"
           >
             <div
               class="rounded-sm w-[329px] h-[640px] sm:w-[470px] sm:h-[512px] bg-[#417505] flex flex-col justify-between p-[45px]"
@@ -781,10 +845,10 @@
           class="w-full xl:max-w-[1520px] h-auto bg-white px-[20px] sm:px-[180px] text-white"
         >
           <div
-            class="w-full sm:h-[320px] h-[400px] border-b-2 border-black flex items-center sm:justify-start justify-center sm:mt-0 mt-[290px]"
+            class="w-full sm:h-[320px] h-auto border-b-2 border-black flex items-center sm:justify-start justify-center sm:mt-0 mt-[180px]"
           >
             <div
-              class="flex items-center justify-center gap-2 sm:mt-0 mt-[220px]"
+              class="flex items-center justify-center gap-2 sm:mt-0 mt-[220px] mb-[80px] sm:mb-0"
             >
               <div
                 class="w-[48px] h-[48px] rounded-full bg-[#FF564F] flex items-center justify-center gap-2"
@@ -1009,6 +1073,7 @@
     </main>
   </body>
   <script>
+    // navbar
     const menuIcon = document.getElementById("menu-icon");
     const sidebar = document.getElementById("sidebar");
     const closeBtn = document.getElementById("close-btn");
@@ -1035,6 +1100,27 @@
       sidebar.classList.add("-translate-x-full");
       sidebar.classList.remove("translate-x-0");
       overlay.classList.add("hidden");
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 2,
+      spaceBetween: 30,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        614: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+      },
     });
   </script>
 </html>
