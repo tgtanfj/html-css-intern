@@ -14,6 +14,7 @@ module.exports = {
   },
   screens: {
     'xl': '1520px',
+    'sm': '420px'
   },
   plugins: [require("tailwindcss-textshadow")],
 };
