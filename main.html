@@ -81,6 +81,135 @@
         opacity: 1;
         transform: scale(1.3);
       }
+
+      .tinder {
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
+      }
+
+      .loaded.tinder {
+        opacity: 1;
+      }
+
+      .tinder--status {
+        position: absolute;
+        top: 50%;
+        margin-top: -30px;
+        z-index: 2;
+        width: 100%;
+        text-align: left;
+        pointer-events: none;
+      }
+
+      .tinder--status i {
+        font-size: 100px;
+        opacity: 0;
+        transform: scale(0.3);
+        transition: all 0.2s ease-in-out;
+        position: absolute;
+        width: 100px;
+        margin-left: -50px;
+      }
+
+      .tinder_love .fa-heart {
+        opacity: 0.7;
+        transform: scale(1);
+      }
+
+      .tinder_nope .fa-remove {
+        opacity: 0.7;
+        transform: scale(1);
+      }
+
+      .tinder--cards {
+        flex-grow: 1;
+        padding-top: 40px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        z-index: 1;
+      }
+
+      .tinder--card {
+        display: inline-block;
+        width: 400px;
+        max-width: 470px;
+        height: auto;
+        background: #ffffff;
+        /* padding-bottom: 40px; */
+        border-radius: 8px;
+        overflow: hidden;
+        position: absolute;
+        will-change: transform;
+        transition: all 0.3s ease-in-out;
+        cursor: -webkit-grab;
+        cursor: -moz-grab;
+        cursor: grab;
+      }
+
+      .moving.tinder--card {
+        transition: none;
+        cursor: -webkit-grabbing;
+        cursor: -moz-grabbing;
+        cursor: grabbing;
+      }
+
+      .tinder--card img {
+        max-width: 100%;
+        pointer-events: none;
+      }
+
+      .tinder--card h3 {
+        margin-top: 32px;
+        font-size: 32px;
+        padding: 0 16px;
+        pointer-events: none;
+      }
+
+      .tinder--card p {
+        margin-top: 24px;
+        font-size: 20px;
+        padding: 0 16px;
+        pointer-events: none;
+      }
+
+      .tinder--buttons {
+        flex: 0 0 100px;
+        text-align: start;
+        padding-top: 20px;
+      }
+
+      .tinder--buttons button {
+        border-radius: 50%;
+        line-height: 60px;
+        width: 60px;
+        border: 0;
+        background: #ffffff;
+        display: inline-block;
+        margin: 0 8px;
+      }
+
+      .tinder--buttons button:focus {
+        outline: 0;
+      }
+
+      .tinder--buttons i {
+        font-size: 32px;
+        vertical-align: middle;
+      }
+
+      .fa-heart {
+        color: #fface4;
+      }
+
+      .fa-remove {
+        color: #cdd6dd;
+      }
     </style>
     <title>Document</title>
   </head>
@@ -97,9 +226,9 @@
             <div
               class="hidden sm:flex items-center justify-between gap-20 text-[16px] font-dm-sans font-light"
             >
-              <p>About</p>
-              <p>Portfolio</p>
-              <p>Contact</p>
+              <a href="#about">About</a>
+              <a href="#portfolio">Portfolio</a>
+              <a href="#contact">Contact</a>
             </div>
             <img
               id="menu-icon"
@@ -113,7 +242,6 @@
               class="fixed top-0 z-[10999] left-0 w-64 h-full bg-white text-black transform -translate-x-full transition-transform duration-300 ease-in-out"
             >
               <button id="close-btn" class="p-4">
-                <!-- Nút X -->
                 <svg
                   class="w-6 h-6"
                   fill="none"
@@ -133,21 +261,24 @@
                 <div
                   class="flex flex-col items-start justify-start text-[16px] font-dm-sans font-light"
                 >
-                  <p
+                  <a
+                    href="#about"
                     class="cursor-pointer mb-[15px] w-full p-1 hover:bg-[#f3f1f1] border-b-2 border-transparent hover:border-b-2 hover:border-black"
                   >
                     About
-                  </p>
-                  <p
+                  </a>
+                  <a
+                    href="#portfolio"
                     class="cursor-pointer mb-[15px] w-full p-1 hover:bg-[#f3f1f1] border-b-2 border-transparent hover:border-b-2 hover:border-black"
                   >
                     Portfolio
-                  </p>
-                  <p
+                  </a>
+                  <a
+                    href="#contact"
                     class="cursor-pointer w-full p-1 hover:bg-[#f3f1f1] border-b-2 border-transparent hover:border-b-2 hover:border-black"
                   >
                     Contact
-                  </p>
+                  </a>
                 </div>
               </div>
             </div>
@@ -192,7 +323,7 @@
             />
           </div>
           <div
-            class="w-[268px] h-[268px] flex items-center justify-center absolute sm:right-[170px] sm:top-[233px] -right-12 -bottom-8"
+            class="w-[268px] h-[268px] flex items-center justify-center absolute sm:right-[170px] sm:top-[233px] -right-0 -bottom-8"
           >
             <div class="grid grid-cols-7 gap-5">
               <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
@@ -513,12 +644,12 @@
               >
               <div class="flex items-center justify-start">
                 <div
-                  class="w-[170px] h-[48px] uppercase bg-[#FF564F] text-white font-semibold text-[16px] flex items-center justify-center rounded-sm"
+                  class="w-[170px] h-[48px] uppercase cursor-pointer bg-[#FF564F] text-white font-semibold text-[16px] flex items-center justify-center rounded-sm"
                 >
                   <p class="font-roboto-condensed">learn more</p>
                 </div>
                 <div
-                  class="w-[170px] h-[48px] bg-white text-black text-[16px] flex items-center justify-center rounded-sm"
+                  class="cursor-pointer w-[170px] h-[48px] bg-white text-black text-[16px] flex items-center justify-center rounded-sm"
                 >
                   <p class="font-dm-sans">Explore Services</p>
                 </div>
@@ -528,6 +659,7 @@
         </div>
       </section>
       <section
+        id="about"
         class="w-full h-full bg-black flex flex-col items-center justify-center"
       >
         <div
@@ -629,6 +761,7 @@
         </div>
       </section>
       <section
+        id="portfolio"
         class="w-full h-full bg-white flex flex-col items-center justify-center overflow-hidden"
       >
         <div
@@ -759,7 +892,7 @@
           class="flex-col flex sm:flex-row items-center justify-between w-full xl:max-w-[1520px] h-auto bg-black px-[20px] sm:px-[180px] text-white"
         >
           <div
-            class="sm:w-[40%] w-[100%] flex flex-col gap-[35px] mt-[110px] sm:mt-[160px] mb-[60px] sm:mb-[110px]"
+            class="sm:w-[90%] w-[100%] flex flex-col gap-[35px] mt-[110px] sm:mt-[160px] mb-[60px] sm:mb-[110px]"
           >
             <p
               class="font-inknut font-[900] text-white sm:leading-[65px] leading-[50px] text-[40px] sm:text-[56px] uppercase flex-1"
@@ -774,69 +907,205 @@
           </div>
 
           <div
-            class="z-50 -mb-[330px] mr-[0px] sm:-mb-[330px] sm:-mr-[450px] flex items-center justify-center gap-8"
+            class="w-full h-auto sm:-mb-[400px] sm:ml-[200px] ml-[0px] -mb-[400px]"
           >
-            <div
-              class="rounded-sm w-[329px] h-[640px] sm:w-[470px] sm:h-[512px] bg-[#417505] flex flex-col justify-between p-[45px]"
-            >
-              <div class="flex items-center justify-start gap-6">
-                <img
-                  src="./public/Oval.png"
-                  class="w-[80px] h-[80px] rounded-full"
-                  alt=""
-                />
-                <div class="flex flex-col items-start justify-center gap-1">
-                  <p
-                    class="font-roboto-condensed uppercase text-white font-[700] text-[24px]"
+            <div class="tinder w-[100%] h-[600px]">
+              <div class="tinder--cards">
+                <div class="tinder--card">
+                  <div
+                    class="rounded-sm h-full w-full bg-[#417505] flex flex-col justify-between p-[45px]"
                   >
-                    Helena Brauer
-                  </p>
-                  <p class="font-dm-sans font-[400] text-[16px] text-white">
-                    Apple Inc.
-                  </p>
+                    <div class="flex items-center justify-start gap-6">
+                      <img
+                        src="./public/Oval.png"
+                        class="w-[80px] h-[80px] rounded-full"
+                        alt=""
+                      />
+                      <div
+                        class="flex flex-col items-start justify-center gap-1"
+                      >
+                        <p
+                          class="font-roboto-condensed uppercase text-white font-[700] text-[24px]"
+                        >
+                          Helena Brauer
+                        </p>
+                        <p
+                          class="font-dm-sans font-[400] text-[16px] text-white"
+                        >
+                          Apple Inc.
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        class="font-dm-sans font-[400] text-[16px] text-[#FFFFFF80]"
+                      >
+                        What looked like a small patch of purple grass, above
+                        five feet square, was moving across the sand in their
+                        direction. When it came near enough he perceived that it
+                        was not grass; there were no blades, but only purple
+                        roots. The roots were revolving, for each small plant in
+                        the whole patch, like the spokes of a rimless wheel.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <p class="font-dm-sans font-[400] text-[16px] text-[#FFFFFF80]">
-                  What looked like a small patch of purple grass, above five
-                  feet square, was moving across the sand in their direction.
-                  When it came near enough he perceived that it was not grass;
-                  there were no blades, but only purple roots. The roots were
-                  revolving, for each small plant in the whole patch, like the
-                  spokes of a rimless wheel.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="sm:flex hidden rounded-sm w-[470px] h-[512px] bg-[#9013FE] flex-col justify-between p-[45px]"
-            >
-              <div class="flex items-center justify-start gap-6">
-                <img
-                  src="./public/Oval2.png"
-                  class="w-[80px] h-[80px] rounded-full"
-                  alt=""
-                />
-                <div class="flex flex-col items-start justify-center gap-1">
-                  <p
-                    class="font-roboto-condensed uppercase text-white font-[700] text-[24px]"
+                <div class="tinder--card">
+                  <div
+                    class="rounded-sm h-[100%] w-full bg-[#9013FE] flex-col justify-between p-[45px]"
                   >
-                    Kay Totleben
-                  </p>
-                  <p class="font-dm-sans font-[400] text-[16px] text-white">
-                    Microsoft
-                  </p>
+                    <div class="flex items-center justify-start gap-6">
+                      <img
+                        src="./public/Oval2.png"
+                        class="w-[80px] h-[80px] rounded-full"
+                        alt=""
+                      />
+                      <div
+                        class="flex flex-col items-start justify-center gap-1"
+                      >
+                        <p
+                          class="font-roboto-condensed uppercase text-white font-[700] text-[24px]"
+                        >
+                          Kay Totleben
+                        </p>
+                        <p
+                          class="font-dm-sans font-[400] text-[16px] text-white"
+                        >
+                          Microsoft
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        class="font-dm-sans font-[400] text-[16px] text-[#FFFFFF80]"
+                      >
+                        What looked like a small patch of purple grass, above
+                        five feet square, was moving across the sand in their
+                        direction. When it came near enough he perceived that it
+                        was not grass; there were no blades, but only purple
+                        roots. The roots were revolving, for each small plant in
+                        the whole patch, like the spokes of a rimless wheel.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <p class="font-dm-sans font-[400] text-[16px] text-[#FFFFFF80]">
-                  What looked like a small patch of purple grass, above five
-                  feet square, was moving across the sand in their direction.
-                  When it came near enough he perceived that it was not grass;
-                  there were no blades, but only purple roots. The roots were
-                  revolving, for each small plant in the whole patch, like the
-                  spokes of a rimless wheel.
-                </p>
+                <div class="tinder--card">
+                  <div
+                    class="rounded-sm h-[100%] w-full bg-[#1d9fe3] flex-col justify-between p-[45px]"
+                  >
+                    <div class="flex items-center justify-start gap-6">
+                      <img
+                        src="./public/Oval2.png"
+                        class="w-[80px] h-[80px] rounded-full"
+                        alt=""
+                      />
+                      <div
+                        class="flex flex-col items-start justify-center gap-1"
+                      >
+                        <p
+                          class="font-roboto-condensed uppercase text-white font-[700] text-[24px]"
+                        >
+                          Kevin De Bruyne
+                        </p>
+                        <p
+                          class="font-dm-sans font-[400] text-[16px] text-white"
+                        >
+                          Mancity
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        class="font-dm-sans font-[400] text-[16px] text-[#FFFFFF80]"
+                      >
+                        What looked like a small patch of purple grass, above
+                        five feet square, was moving across the sand in their
+                        direction. When it came near enough he perceived that it
+                        was not grass; there were no blades, but only purple
+                        roots. The roots were revolving, for each small plant in
+                        the whole patch, like the spokes of a rimless wheel.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tinder--card">
+                  <div
+                    class="rounded-sm h-[100%] w-full bg-[#F8E71C] flex-col justify-between p-[45px]"
+                  >
+                    <div class="flex items-center justify-start gap-6">
+                      <img
+                        src="./public/Oval2.png"
+                        class="w-[80px] h-[80px] rounded-full"
+                        alt=""
+                      />
+                      <div
+                        class="flex flex-col items-start justify-center gap-1"
+                      >
+                        <p
+                          class="font-roboto-condensed uppercase text-white font-[700] text-[24px]"
+                        >
+                          John Doe
+                        </p>
+                        <p
+                          class="font-dm-sans font-[400] text-[16px] text-white"
+                        >
+                          Google
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        class="font-dm-sans font-[400] text-[16px] text-[#FFFFFF80]"
+                      >
+                        What looked like a small patch of purple grass, above
+                        five feet square, was moving across the sand in their
+                        direction. When it came near enough he perceived that it
+                        was not grass; there were no blades, but only purple
+                        roots. The roots were revolving, for each small plant in
+                        the whole patch, like the spokes of a rimless wheel.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tinder--card">
+                  <div
+                    class="rounded-sm h-[100%] w-full bg-[#FF564F] flex-col justify-between p-[45px]"
+                  >
+                    <div class="flex items-center justify-start gap-6">
+                      <img
+                        src="./public/Oval2.png"
+                        class="w-[80px] h-[80px] rounded-full"
+                        alt=""
+                      />
+                      <div
+                        class="flex flex-col items-start justify-center gap-1"
+                      >
+                        <p
+                          class="font-roboto-condensed uppercase text-white font-[700] text-[24px]"
+                        >
+                          Kevin De Bruyne
+                        </p>
+                        <p
+                          class="font-dm-sans font-[400] text-[16px] text-white"
+                        >
+                          Mancity
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        class="font-dm-sans font-[400] text-[16px] text-[#FFFFFF80]"
+                      >
+                        What looked like a small patch of purple grass, above
+                        five feet square, was moving across the sand in their
+                        direction. When it came near enough he perceived that it
+                        was not grass; there were no blades, but only purple
+                        roots. The roots were revolving, for each small plant in
+                        the whole patch, like the spokes of a rimless wheel.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -845,20 +1114,22 @@
           class="w-full xl:max-w-[1520px] h-auto bg-white px-[20px] sm:px-[180px] text-white"
         >
           <div
-            class="w-full sm:h-[320px] h-auto border-b-2 border-black flex items-center sm:justify-start justify-center sm:mt-0 mt-[180px]"
+            class="w-full sm:h-[320px] h-auto border-b-2 border-black flex items-center sm:justify-start justify-center sm:mt-0 mt-[220px]"
           >
             <div
               class="flex items-center justify-center gap-2 sm:mt-0 mt-[220px] mb-[80px] sm:mb-0"
             >
               <div
-                class="w-[48px] h-[48px] rounded-full bg-[#FF564F] flex items-center justify-center gap-2"
+                id="love"
+                class="w-[48px] h-[48px] rounded-full bg-[#FF564F] flex items-center justify-center gap-2 cursor-pointer"
               >
                 <div
                   class="w-0 h-0 border-t-8 border-b-8 border-r-[10px] border-t-transparent border-b-transparent border-r-white"
                 ></div>
               </div>
               <div
-                class="w-[48px] h-[48px] rounded-full bg-[#FF564F] flex items-center justify-center gap-2"
+                id="nope"
+                class="w-[48px] h-[48px] rounded-full bg-[#FF564F] flex items-center justify-center gap-2 cursor-pointer"
               >
                 <div
                   class="w-0 h-0 border-t-8 border-b-8 border-l-[10px] border-t-transparent border-b-transparent border-l-white"
@@ -976,6 +1247,7 @@
         </div>
       </section>
       <section
+        id="contact"
         class="w-full h-full bg-black flex flex-col items-center justify-center overflow-hidden"
       >
         <div
@@ -1069,10 +1341,18 @@
             </div>
           </div>
         </div>
+        <button
+          id="scrollToTopBtn"
+          class="fixed bottom-4 right-4 hidden bg-white text-black hover:text-white hover:bg-black w-[40px] h-[40px] z-[999999] rounded-full shadow-md border-2 border-black transition duration-300"
+        >
+          ↑
+        </button>
       </section>
     </main>
   </body>
+  <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
   <script>
+    "use strict";
     // navbar
     const menuIcon = document.getElementById("menu-icon");
     const sidebar = document.getElementById("sidebar");
@@ -1101,6 +1381,147 @@
       sidebar.classList.remove("translate-x-0");
       overlay.classList.add("hidden");
     });
+
+    // card stack
+    var tinderContainer = document.querySelector(".tinder");
+    var allCards = document.querySelectorAll(".tinder--card");
+    var nope = document.getElementById("nope");
+    var love = document.getElementById("love");
+
+    function initCards(card, index) {
+      var newCards = document.querySelectorAll(".tinder--card:not(.removed)");
+      newCards.forEach(function (card, index) {
+        card.style.zIndex = allCards.length - index;
+        card.style.transform =
+          "scale(" + (20 - index) / 20 + ") translateY(-" + 30 * index + "px)";
+        card.style.opacity = (10 - index) / 10;
+      });
+
+      tinderContainer.classList.add("loaded");
+    }
+
+    initCards();
+
+    allCards.forEach(function (el) {
+      var hammertime = new Hammer(el);
+
+      hammertime.on("pan", function (event) {
+        el.classList.add("moving");
+      });
+
+      hammertime.on("pan", function (event) {
+        if (event.deltaX === 0) return;
+        if (event.center.x === 0 && event.center.y === 0) return;
+
+        tinderContainer.classList.toggle("tinder_love", event.deltaX > 0);
+        tinderContainer.classList.toggle("tinder_nope", event.deltaX < 0);
+        var xMulti = event.deltaX * 0.03;
+        var yMulti = event.deltaY / 80;
+        var rotate = xMulti * yMulti;
+
+        event.target.style.transform =
+          "translate(" +
+          event.deltaX +
+          "px, " +
+          event.deltaY +
+          "px) rotate(" +
+          rotate +
+          "deg)";
+      });
+
+      hammertime.on("panend", function (event) {
+        el.classList.remove("moving");
+        tinderContainer.classList.remove("tinder_love");
+        tinderContainer.classList.remove("tinder_nope");
+        var moveOutWidth = document.body.clientWidth;
+        var keep =
+          Math.abs(event.deltaX) < 80 || Math.abs(event.velocityX) < 0.5;
+
+        event.target.classList.toggle("removed", !keep);
+
+        if (keep) {
+          event.target.style.transform = "";
+        } else {
+          var endX = Math.max(
+            Math.abs(event.velocityX) * moveOutWidth,
+            moveOutWidth
+          );
+          var toX = event.deltaX > 0 ? endX : -endX;
+          var endY = Math.abs(event.velocityY) * moveOutWidth;
+          var toY = event.deltaY > 0 ? endY : -endY;
+          var xMulti = event.deltaX * 0.03;
+          var yMulti = event.deltaY / 80;
+          var rotate = xMulti * yMulti;
+
+          event.target.style.transform =
+            "translate(" +
+            toX +
+            "px, " +
+            (toY + event.deltaY) +
+            "px) rotate(" +
+            rotate +
+            "deg)";
+          initCards();
+        }
+      });
+    });
+
+    function createButtonListener(love) {
+      return function (event) {
+        var cards = document.querySelectorAll(".tinder--card:not(.removed)");
+        var moveOutWidth = document.body.clientWidth * 1.5;
+
+        if (!cards.length) {
+          allCards.forEach(function (card) {
+            card.classList.remove("removed");
+            card.style.transform = "";
+          });
+          initCards();
+
+          return false;
+        }
+
+        var card = cards[0];
+        card.classList.add("removed");
+
+        if (love) {
+          card.style.transform =
+            "translate(" + moveOutWidth + "px, -100px) rotate(-30deg)";
+        } else {
+          card.style.transform =
+            "translate(-" + moveOutWidth + "px, -100px) rotate(30deg)";
+        }
+
+        initCards();
+
+        event.preventDefault();
+      };
+    }
+
+    var nopeListener = createButtonListener(false);
+    var loveListener = createButtonListener(true);
+
+    nope.addEventListener("click", nopeListener);
+    love.addEventListener("click", loveListener);
+
+    window.addEventListener("scroll", function () {
+      const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+      if (window.scrollY > 300) {
+        scrollToTopBtn.classList.remove("hidden");
+      } else {
+        scrollToTopBtn.classList.add("hidden");
+      }
+    });
+
+    document
+      .getElementById("scrollToTopBtn")
+      .addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
