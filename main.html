@@ -22,6 +22,10 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <style>
       @layer base {
         .font-inknut {
@@ -34,40 +38,1510 @@
           font-family: "Roboto Condensed", sans-serif;
         }
       }
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-2px);
+        }
+        50% {
+          transform: translateX(2px);
+        }
+        75% {
+          transform: translateX(-2px);
+        }
+      }
+
+      .shake {
+        animation: shake 0.3s ease-in-out;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: start;
+        font-size: 18px;
+        border-radius: 0.125rem;
+      }
+
+      .swiper-pagination-bullet {
+        background-color: #9c9696;
+        width: 8px;
+        height: 8px;
+        opacity: 0.5;
+      }
+
+      .swiper-pagination-bullet-active {
+        background-color: #9013fe;
+        opacity: 1;
+        transform: scale(1.3);
+      }
+
+      .tinder {
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
+      }
+
+      .loaded.tinder {
+        opacity: 1;
+      }
+
+      .tinder--status {
+        position: absolute;
+        top: 50%;
+        margin-top: -30px;
+        z-index: 2;
+        width: 100%;
+        text-align: left;
+        pointer-events: none;
+      }
+
+      .tinder--status i {
+        font-size: 100px;
+        opacity: 0;
+        transform: scale(0.3);
+        transition: all 0.2s ease-in-out;
+        position: absolute;
+        width: 100px;
+        margin-left: -50px;
+      }
+
+      .tinder_love .fa-heart {
+        opacity: 0.7;
+        transform: scale(1);
+      }
+
+      .tinder_nope .fa-remove {
+        opacity: 0.7;
+        transform: scale(1);
+      }
+
+      .tinder--cards {
+        flex-grow: 1;
+        padding-top: 40px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        z-index: 1;
+      }
+
+      .tinder--card {
+        display: inline-block;
+        width: 400px;
+        max-width: 470px;
+        height: auto;
+        background: #ffffff;
+        /* padding-bottom: 40px; */
+        border-radius: 8px;
+        overflow: hidden;
+        position: absolute;
+        will-change: transform;
+        transition: all 0.3s ease-in-out;
+        cursor: -webkit-grab;
+        cursor: -moz-grab;
+        cursor: grab;
+      }
+
+      .moving.tinder--card {
+        transition: none;
+        cursor: -webkit-grabbing;
+        cursor: -moz-grabbing;
+        cursor: grabbing;
+      }
+
+      .tinder--card img {
+        max-width: 100%;
+        pointer-events: none;
+      }
+
+      .tinder--card h3 {
+        margin-top: 32px;
+        font-size: 32px;
+        padding: 0 16px;
+        pointer-events: none;
+      }
+
+      .tinder--card p {
+        margin-top: 24px;
+        font-size: 20px;
+        padding: 0 16px;
+        pointer-events: none;
+      }
+
+      .tinder--buttons {
+        flex: 0 0 100px;
+        text-align: start;
+        padding-top: 20px;
+      }
+
+      .tinder--buttons button {
+        border-radius: 50%;
+        line-height: 60px;
+        width: 60px;
+        border: 0;
+        background: #ffffff;
+        display: inline-block;
+        margin: 0 8px;
+      }
+
+      .tinder--buttons button:focus {
+        outline: 0;
+      }
+
+      .tinder--buttons i {
+        font-size: 32px;
+        vertical-align: middle;
+      }
+
+      .fa-heart {
+        color: #fface4;
+      }
+
+      .fa-remove {
+        color: #cdd6dd;
+      }
     </style>
     <title>Document</title>
   </head>
   <body>
-    <main class="">
-      <section class="w-full h-[700px] bg-black pt-[30px] px-[180px] relative">
-        <nav class="flex items-center justify-between text-white">
-          <p class="font-bold text-2xl">AGENCY</p>
-          <div
-            class="flex items-center justify-between gap-20 text-[16px] font-dm-sans font-light"
-          >
-            <p>About</p>
-            <p>Portfolio</p>
-            <p>Contact</p>
-          </div>
-        </nav>
-        <div class="w-full h-full flex items-center justify-start text-white">
-          <div class="flex flex-col max-w-[65%] gap-14">
-            <h1
-              class="text-[72px] font-extrabold uppercase leading-none font-inknut z-10 text-shadow"
+    <main class="flex flex-col items-center justify-center">
+      <section
+        class="w-full h-full bg-black flex flex-col items-center justify-center"
+      >
+        <div
+          class="w-full xl:max-w-[1520px] h-auto bg-black pt-[30px] px-[20px] sm:px-[180px] relative pb-[140px]"
+        >
+          <nav class="flex items-center justify-between text-white">
+            <p class="font-bold text-2xl">AGENCY</p>
+            <div
+              class="hidden sm:flex items-center justify-between gap-20 text-[16px] font-dm-sans font-light"
             >
-              We Create Amazing Sites With Ease
-            </h1>
-            <div class="flex items-center justify-start gap-10">
-              <img class="w-[56px] h-[56px]" src="./public/Object.png" alt="" />
-              <span
-                class="text-[16px] uppercase flex-wrap max-w-[40%] leading-8 font-roboto-condensed tracking-widest"
-                >A peep at some distant orb has power to raise and purify</span
+              <a href="#about">About</a>
+              <a href="#portfolio">Portfolio</a>
+              <a href="#contact">Contact</a>
+            </div>
+            <img
+              id="menu-icon"
+              src="./public/menu.png"
+              class="h-[30px] w-[28px] sm:hidden block cursor-pointer"
+              alt=""
+            />
+
+            <div
+              id="sidebar"
+              class="fixed top-0 z-[10999] left-0 w-64 h-full bg-white text-black transform -translate-x-full transition-transform duration-300 ease-in-out"
+            >
+              <button id="close-btn" class="p-4">
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+              <div class="p-4">
+                <div
+                  class="flex flex-col items-start justify-start text-[16px] font-dm-sans font-light"
+                >
+                  <a
+                    href="#about"
+                    class="cursor-pointer mb-[15px] w-full p-1 hover:bg-[#f3f1f1] border-b-2 border-transparent hover:border-b-2 hover:border-black"
+                  >
+                    About
+                  </a>
+                  <a
+                    href="#portfolio"
+                    class="cursor-pointer mb-[15px] w-full p-1 hover:bg-[#f3f1f1] border-b-2 border-transparent hover:border-b-2 hover:border-black"
+                  >
+                    Portfolio
+                  </a>
+                  <a
+                    href="#contact"
+                    class="cursor-pointer w-full p-1 hover:bg-[#f3f1f1] border-b-2 border-transparent hover:border-b-2 hover:border-black"
+                  >
+                    Contact
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="overlay"
+              class="fixed inset-0 bg-black opacity-50 z-[9999] hidden"
+            ></div>
+          </nav>
+          <div
+            class="w-full h-full flex items-center justify-start text-white pt-[145px] sm:mb-0 mb-[195px]"
+          >
+            <div class="flex flex-col w-full sm:max-w-[65%] gap-14">
+              <h1
+                class="text-[45px] sm:text-[72px] font-[900] uppercase sm:leading-[80px] leading-[80px] font-inknut z-20 text-shadow-md"
               >
+                We Create Amazing Sites With Ease
+              </h1>
+              <div
+                class="flex items-start sm:items-center justify-start gap-10"
+              >
+                <img
+                  class="w-[56px] h-[56px]"
+                  src="./public/Object.png"
+                  alt=""
+                />
+                <span
+                  class="text-[16px] uppercase flex-wrap w-full sm:max-w-[40%] leading-8 font-roboto-condensed tracking-[2px]"
+                  >A peep at some distant orb has power to raise and
+                  purify</span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="absolute sm:w-[570px] sm:h-[624px] w-[329px] h-[360px] bg-[#FF564F] sm:top-[325px] sm:left-[680px] -bottom-52 left-5 rounded-md flex items-center justify-center"
+          >
+            <img
+              src="./public/Bitmap.png"
+              class="sm:w-[684px] sm:h-[513px] w-[397px] h-[298px] z-10 object-cover"
+              alt=""
+            />
+          </div>
+          <div
+            class="w-[268px] h-[268px] flex items-center justify-center absolute sm:right-[170px] sm:top-[233px] -right-0 -bottom-8"
+          >
+            <div class="grid grid-cols-7 gap-5">
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+              <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
             </div>
           </div>
         </div>
-        <div class="absolute w-[570px] h-[624px] bg-[#FF564F] top-[340px] left-[670px] rounded-md"></div>
+      </section>
+      <section
+        class="w-full h-full bg-white flex flex-col items-center justify-center"
+      >
+        <div
+          class="w-full xl:max-w-[1520px] h-auto bg-white px-[20px] sm:px-[180px] text-black"
+        >
+          <div
+            class="h-[385px] sm:h-[335px] w-full border-b-2 border-[#111111] flex items-center justify-start"
+          >
+            <div
+              class="flex items-center justify-center gap-2 sm:mt-0 mt-[220px]"
+            >
+              <div
+                class="w-[48px] h-[48px] rounded-full bg-[#FF564F] flex items-center justify-center gap-2"
+              >
+                <div
+                  class="w-0 h-0 border-t-8 border-b-8 border-r-[10px] border-t-transparent border-b-transparent border-r-white"
+                ></div>
+              </div>
+              <div
+                class="w-[48px] h-[48px] rounded-full bg-[#FF564F] flex items-center justify-center gap-2"
+              >
+                <div
+                  class="w-0 h-0 border-t-8 border-b-8 border-l-[10px] border-t-transparent border-b-transparent border-l-white"
+                ></div>
+              </div>
+              <div class="font-roboto-condensed font-bold text-[28px] ml-4">
+                1 / 2
+              </div>
+            </div>
+          </div>
+          <div
+            class="w-full h-[72%] mb-[100px] sm:mb-0 flex flex-col sm:flex-row items-center justify-center gap-24 overflow-visible"
+          >
+            <div
+              class="w-full sm:w-[50%] h-full flex items-center justify-center overflow-visible relative mt-[180px] mb-[0px] sm:mb-[220px]"
+            >
+              <div
+                class="relative z-50 sm:w-[470px] sm:h-[470px] w-[329px] h-[329px] rounded-full bg-[#F8E71C] overflow-visible flex items-center justify-center"
+              >
+                <img
+                  class="absolute sm:top-[-50px] sm:right-0 top-0 right-0 object-cover sm:w-[756px] sm:h-[567px] w-[454px] h-[340px] overflow-visible"
+                  src="./public/Bitmap22.png"
+                />
+                <div
+                  class="z-10 w-[110px] h-[110px] rounded-full bg-white flex items-center justify-center gap-2"
+                >
+                  <div
+                    class="w-0 h-0 border-t-[16px] border-b-[16px] border-l-[24px] border-t-transparent border-b-transparent border-l-[#FF564F]"
+                  ></div>
+                </div>
+              </div>
+              <div
+                class="w-[268px] h-[268px] z-0 flex items-center justify-center absolute sm:left-[70px] sm:top-[110px] left-[0px] -top-[50px]"
+              >
+                <div class="grid grid-cols-11 gap-5">
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                  <div class="w-1 h-1 bg-[#FF564F] rounded-full"></div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="w-[100%] sm:w-[50%] flex flex-col items-start justify-center gap-10"
+            >
+              <span
+                class="font-inknut text-[40px] sm:text-[56px] font-[900] w-[80%] uppercase leading-[65px]"
+                >Lets take Advantage
+              </span>
+              <span
+                class="uppercase text-[16px] font-normal tracking-[4px] font-roboto-condensed"
+                >sable cloud beneath was dished</span
+              >
+              <span class="font-dm-sans w-[80%] text-[16px] text-[#11111180]"
+                >Best for active freelancers and designers who need more
+                projects and premium features code and unlock more.</span
+              >
+              <div class="flex items-center justify-start">
+                <div
+                  class="w-[170px] h-[48px] uppercase cursor-pointer bg-[#FF564F] text-white font-semibold text-[16px] flex items-center justify-center rounded-sm"
+                >
+                  <p class="font-roboto-condensed">learn more</p>
+                </div>
+                <div
+                  class="cursor-pointer w-[170px] h-[48px] bg-white text-black text-[16px] flex items-center justify-center rounded-sm"
+                >
+                  <p class="font-dm-sans">Explore Services</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        id="about"
+        class="w-full h-full bg-black flex flex-col items-center justify-center"
+      >
+        <div
+          class="w-full xl:max-w-[1520px] h-auto bg-black px-[20px] sm:px-[180px] text-white"
+        >
+          <div
+            class="w-full h-full flex flex-col items-center justify-center mt-[145px] mb-[100px]"
+          >
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-11 mb-[144px]">
+              <p
+                class="font-inknut font-[900] text-white leading-[50px] text-[40px] sm:text-[56px] uppercase"
+              >
+                Our Core Features
+              </p>
+              <div
+                class="font-dm-sans text-[16px] text-[#FFFFFF80] leading-[32px]"
+              >
+                Minuteness of the parts formed a great hindrance to my speed,
+                resolved, contrary to my first intention, to make the being.
+                Minuteness of the parts formed a great hindrance to my speed,
+                resolved, contrary to my first intention, to make the being.
+              </div>
+            </div>
+
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper mb-[80px]">
+                <div class="swiper-slide sm:w-auto w-full">
+                  <div
+                    class="w-full h-auto sm:h-[288px] bg-[#9013FE] rounded-sm flex flex-col items-start justify-center p-[50px] gap-6"
+                  >
+                    <img src="./public/Object2.png" class="w-[48px] h-[48px]" />
+                    <p
+                      class="uppercase font-[700] text-white text-[24px] font-roboto-condensed"
+                    >
+                      white label
+                    </p>
+                    <p class="text-[#FFFFFF80] text-[16px] font-dm-sans">
+                      Minuteness of the parts formed a great hindrance to my
+                      speed, resolved, contrary to my first intention, to make
+                      the being.
+                    </p>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div
+                    class="w-full h-auto sm:h-[288px] bg-[#417505] rounded-sm flex flex-col items-start justify-center p-[50px] gap-6"
+                  >
+                    <img src="./public/Object3.png" class="w-[48px] h-[48px]" />
+                    <p
+                      class="uppercase font-[700] text-white text-[24px] font-roboto-condensed"
+                    >
+                      Code export
+                    </p>
+                    <p class="text-[#FFFFFF80] text-[16px] font-dm-sans">
+                      Minuteness of the parts formed a great hindrance to my
+                      speed, resolved, contrary to my first intention, to make
+                      the being.
+                    </p>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div
+                    class="w-full h-auto sm:h-[288px] bg-[#F8E71C] rounded-sm flex flex-col items-start justify-center p-[50px] gap-6"
+                  >
+                    <img src="./public/Object2.png" class="w-[48px] h-[48px]" />
+                    <p
+                      class="uppercase font-[700] text-white text-[24px] font-roboto-condensed"
+                    >
+                      white label
+                    </p>
+                    <p class="text-[#FFFFFF80] text-[16px] font-dm-sans">
+                      Minuteness of the parts formed a great hindrance to my
+                      speed, resolved, contrary to my first intention, to make
+                      the being.
+                    </p>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div
+                    class="w-full h-auto sm:h-[288px] bg-[#FF564F] rounded-sm flex flex-col items-start justify-center p-[50px] gap-6"
+                  >
+                    <img src="./public/Object3.png" class="w-[48px] h-[48px]" />
+                    <p
+                      class="uppercase font-[700] text-white text-[24px] font-roboto-condensed"
+                    >
+                      white label
+                    </p>
+                    <p class="text-[#FFFFFF80] text-[16px] font-dm-sans">
+                      Minuteness of the parts formed a great hindrance to my
+                      speed, resolved, contrary to my first intention, to make
+                      the being.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        id="portfolio"
+        class="w-full h-full bg-white flex flex-col items-center justify-center overflow-hidden"
+      >
+        <div
+          class="w-full xl:max-w-[1520px] h-auto bg-white px-[20px] sm:px-[180px] text-black"
+        >
+          <div
+            class="w-full pt-[90px] sm:mt-0 sm:h-[320px] border-b-2 border-black grid sm:grid-cols-2 grid-cols-1 gap-11"
+          >
+            <p
+              class="font-inknut font-[900] text-black sm:leading-[65px] leading-[50px] text-[40px] sm:text-[56px] uppercase flex-1"
+            >
+              Check Our Projects
+            </p>
+            <div
+              class="font-dm-sans text-[16px] text-[#11111180] leading-[32px] flex-1 mb-[60px]"
+            >
+              Minuteness of the parts formed a great hindrance to my speed,
+              resolved, contrary to my first intention, to make the being.
+              Minuteness of the parts formed a great hindrance to my speed,
+              resolved, contrary to my first intention, to make the being.
+            </div>
+          </div>
+          <div
+            class="w-full mt-[80px] flex flex-col sm:flex-row items-start justify-between"
+          >
+            <div class="w-[100%] sm:w-[25%]">
+              <div class="hidden sm:flex w-full flex-col gap-8">
+                <p
+                  class="font-roboto-condensed font-[400] text-[16px] uppercase mb-[20px] tracking-[4px]"
+                >
+                  Portfolio
+                </p>
+                <div
+                  class="w-[170px] h-[48px] bg-black text-white p-3 rounded-[4px] font-dm-sans font-[400] text-[16px]"
+                >
+                  All
+                </div>
+                <p class="font-dm-sans font-[400] text-[16px]">Design</p>
+                <p class="font-dm-sans font-[400] text-[16px]">Development</p>
+                <p
+                  class="font-dm-sans font-[400] text-[16px]"
+                  class="font-dm-sans"
+                >
+                  Branding
+                </p>
+                <p class="font-dm-sans font-[400] text-[16px]">Products</p>
+              </div>
+              <div class="sm:hidden block w-full gap-8 mb-[60px]">
+                <select
+                  class="w-full outline outline-1 outline-[#DADADA] rounded-sm p-[10px]"
+                  name=""
+                  id=""
+                >
+                  <option class="font-dm-sans font-[400] text-[16px]" value="">
+                    All
+                  </option>
+                  <option class="font-dm-sans font-[400] text-[16px]" value="">
+                    Design
+                  </option>
+                  <option class="font-dm-sans font-[400] text-[16px]" value="">
+                    Development
+                  </option>
+                  <option class="font-dm-sans font-[400] text-[16px]" value="">
+                    Branding
+                  </option>
+                  <option class="font-dm-sans font-[400] text-[16px]" value="">
+                    Products
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="w-[100%] sm:w-[75%] flex flex-col gap-11">
+              <div
+                class="relative w-full h-[320px] sm:h-[416px] bg-[#F8E71C] rounded-sm flex items-end pb-[30px] pl-[30px] sm:pb-[50px] sm:pl-[50px]"
+              >
+                <div class="flex flex-col sm:z-0 z-20">
+                  <p
+                    class="uppercase tracking-[4px] font-roboto-condensed font-[400] text-[16px]"
+                  >
+                    design
+                  </p>
+                  <p
+                    class="uppercase font-inknut font-[900] text-[40px] w-full sm:w-[281px] mt-2 leading-[50px] sm:leading-none"
+                  >
+                    Creative Template
+                  </p>
+                </div>
+                <img
+                  class="sm:z-0 z-10 absolute bottom-0 right-0 sm:bottom-0 sm:right-24 w-[274px] h-[342px] sm:w-[376px] sm:h-[470px]"
+                  src="./public/Bitmap3.png"
+                  alt=""
+                />
+              </div>
+              <div
+                class="relative w-full h-[320px] sm:h-[416px] bg-[#FF564F] rounded-sm flex items-end pb-[30px] pl-[30px] sm:pb-[50px] sm:pl-[50px]"
+              >
+                <div class="flex flex-col text-white sm:z-0 z-20">
+                  <p
+                    class="uppercase tracking-[4px] font-roboto-condensed font-[400] text-[16px]"
+                  >
+                    branding
+                  </p>
+                  <p
+                    class="uppercase font-inknut font-[900] text-[40px] w-full sm:w-[281px] mt-2 leading-[50px] sm:leading-none"
+                  >
+                    Amazing Startup
+                  </p>
+                </div>
+                <img
+                  class="sm:z-0 z-10 absolute -bottom-[1px] -right-12 w-[426px] h-[302px] sm:w-[614px] sm:h-[435px]"
+                  src="./public/4.png"
+                  alt=""
+                />
+              </div>
+              <button
+                class="uppercase w-[170px] h-[48px] bg-[#FF564F] rounded-sm text-white mb-[110px] mt-[40px] m-auto"
+              >
+                load more
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="w-full h-full bg-white flex flex-col items-center justify-center overflow-hidden"
+      >
+        <div
+          class="flex-col flex sm:flex-row items-center justify-between w-full xl:max-w-[1520px] h-auto bg-black px-[20px] sm:px-[180px] text-white"
+        >
+          <div
+            class="sm:w-[90%] w-[100%] flex flex-col gap-[35px] mt-[110px] sm:mt-[160px] mb-[60px] sm:mb-[110px]"
+          >
+            <p
+              class="font-inknut font-[900] text-white sm:leading-[65px] leading-[50px] text-[40px] sm:text-[56px] uppercase flex-1"
+            >
+              What Our Clients Say
+            </p>
+            <p
+              class="font-roboto-condensed font-[400] text-[16px] uppercase mb-0 sm:mb-[20px] tracking-[4px]"
+            >
+              Testimonials
+            </p>
+          </div>
+
+          <div
+            class="w-full h-auto sm:-mb-[400px] sm:ml-[200px] ml-[0px] -mb-[400px]"
+          >
+            <div class="tinder w-[100%] h-[600px]">
+              <div class="tinder--cards">
+                <div class="tinder--card">
+                  <div
+                    class="rounded-sm h-full w-full bg-[#417505] flex flex-col justify-between p-[45px]"
+                  >
+                    <div class="flex items-center justify-start gap-6">
+                      <img
+                        src="./public/Oval.png"
+                        class="w-[80px] h-[80px] rounded-full"
+                        alt=""
+                      />
+                      <div
+                        class="flex flex-col items-start justify-center gap-1"
+                      >
+                        <p
+                          class="font-roboto-condensed uppercase text-white font-[700] text-[24px]"
+                        >
+                          Helena Brauer
+                        </p>
+                        <p
+                          class="font-dm-sans font-[400] text-[16px] text-white"
+                        >
+                          Apple Inc.
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        class="font-dm-sans font-[400] text-[16px] text-[#FFFFFF80]"
+                      >
+                        What looked like a small patch of purple grass, above
+                        five feet square, was moving across the sand in their
+                        direction. When it came near enough he perceived that it
+                        was not grass; there were no blades, but only purple
+                        roots. The roots were revolving, for each small plant in
+                        the whole patch, like the spokes of a rimless wheel.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tinder--card">
+                  <div
+                    class="rounded-sm h-[100%] w-full bg-[#9013FE] flex-col justify-between p-[45px]"
+                  >
+                    <div class="flex items-center justify-start gap-6">
+                      <img
+                        src="./public/Oval2.png"
+                        class="w-[80px] h-[80px] rounded-full"
+                        alt=""
+                      />
+                      <div
+                        class="flex flex-col items-start justify-center gap-1"
+                      >
+                        <p
+                          class="font-roboto-condensed uppercase text-white font-[700] text-[24px]"
+                        >
+                          Kay Totleben
+                        </p>
+                        <p
+                          class="font-dm-sans font-[400] text-[16px] text-white"
+                        >
+                          Microsoft
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        class="font-dm-sans font-[400] text-[16px] text-[#FFFFFF80]"
+                      >
+                        What looked like a small patch of purple grass, above
+                        five feet square, was moving across the sand in their
+                        direction. When it came near enough he perceived that it
+                        was not grass; there were no blades, but only purple
+                        roots. The roots were revolving, for each small plant in
+                        the whole patch, like the spokes of a rimless wheel.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tinder--card">
+                  <div
+                    class="rounded-sm h-[100%] w-full bg-[#1d9fe3] flex-col justify-between p-[45px]"
+                  >
+                    <div class="flex items-center justify-start gap-6">
+                      <img
+                        src="./public/Oval2.png"
+                        class="w-[80px] h-[80px] rounded-full"
+                        alt=""
+                      />
+                      <div
+                        class="flex flex-col items-start justify-center gap-1"
+                      >
+                        <p
+                          class="font-roboto-condensed uppercase text-white font-[700] text-[24px]"
+                        >
+                          Kevin De Bruyne
+                        </p>
+                        <p
+                          class="font-dm-sans font-[400] text-[16px] text-white"
+                        >
+                          Mancity
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        class="font-dm-sans font-[400] text-[16px] text-[#FFFFFF80]"
+                      >
+                        What looked like a small patch of purple grass, above
+                        five feet square, was moving across the sand in their
+                        direction. When it came near enough he perceived that it
+                        was not grass; there were no blades, but only purple
+                        roots. The roots were revolving, for each small plant in
+                        the whole patch, like the spokes of a rimless wheel.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tinder--card">
+                  <div
+                    class="rounded-sm h-[100%] w-full bg-[#F8E71C] flex-col justify-between p-[45px]"
+                  >
+                    <div class="flex items-center justify-start gap-6">
+                      <img
+                        src="./public/Oval2.png"
+                        class="w-[80px] h-[80px] rounded-full"
+                        alt=""
+                      />
+                      <div
+                        class="flex flex-col items-start justify-center gap-1"
+                      >
+                        <p
+                          class="font-roboto-condensed uppercase text-white font-[700] text-[24px]"
+                        >
+                          John Doe
+                        </p>
+                        <p
+                          class="font-dm-sans font-[400] text-[16px] text-white"
+                        >
+                          Google
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        class="font-dm-sans font-[400] text-[16px] text-[#FFFFFF80]"
+                      >
+                        What looked like a small patch of purple grass, above
+                        five feet square, was moving across the sand in their
+                        direction. When it came near enough he perceived that it
+                        was not grass; there were no blades, but only purple
+                        roots. The roots were revolving, for each small plant in
+                        the whole patch, like the spokes of a rimless wheel.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tinder--card">
+                  <div
+                    class="rounded-sm h-[100%] w-full bg-[#FF564F] flex-col justify-between p-[45px]"
+                  >
+                    <div class="flex items-center justify-start gap-6">
+                      <img
+                        src="./public/Oval2.png"
+                        class="w-[80px] h-[80px] rounded-full"
+                        alt=""
+                      />
+                      <div
+                        class="flex flex-col items-start justify-center gap-1"
+                      >
+                        <p
+                          class="font-roboto-condensed uppercase text-white font-[700] text-[24px]"
+                        >
+                          Kevin De Bruyne
+                        </p>
+                        <p
+                          class="font-dm-sans font-[400] text-[16px] text-white"
+                        >
+                          Mancity
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        class="font-dm-sans font-[400] text-[16px] text-[#FFFFFF80]"
+                      >
+                        What looked like a small patch of purple grass, above
+                        five feet square, was moving across the sand in their
+                        direction. When it came near enough he perceived that it
+                        was not grass; there were no blades, but only purple
+                        roots. The roots were revolving, for each small plant in
+                        the whole patch, like the spokes of a rimless wheel.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="w-full xl:max-w-[1520px] h-auto bg-white px-[20px] sm:px-[180px] text-white"
+        >
+          <div
+            class="w-full sm:h-[320px] h-auto border-b-2 border-black flex items-center sm:justify-start justify-center sm:mt-0 mt-[220px]"
+          >
+            <div
+              class="flex items-center justify-center gap-2 sm:mt-0 mt-[220px] mb-[80px] sm:mb-0"
+            >
+              <div
+                id="love"
+                class="w-[48px] h-[48px] rounded-full bg-[#FF564F] flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <div
+                  class="w-0 h-0 border-t-8 border-b-8 border-r-[10px] border-t-transparent border-b-transparent border-r-white"
+                ></div>
+              </div>
+              <div
+                id="nope"
+                class="w-[48px] h-[48px] rounded-full bg-[#FF564F] flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <div
+                  class="w-0 h-0 border-t-8 border-b-8 border-l-[10px] border-t-transparent border-b-transparent border-l-white"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="w-full h-auto py-[80px] border-b-2 border-black flex sm:flex-row flex-col items-center justify-center sm:gap-0 gap-12 sm:items-center sm:justify-between"
+          >
+            <img src="./public/332.png" class="w-[127px] h-[32px]" alt="" />
+            <img
+              src="./public/Object121.png"
+              class="w-[160px] h-[32px]"
+              alt=""
+            />
+            <img src="./public/55.png" class="w-[112px] h-[32px]" alt="" />
+            <img
+              src="./public/Object3213.png"
+              class="w-[149px] h-[32px]"
+              alt=""
+            />
+            <img
+              src="./public/1231231.png"
+              class="hidden sm:block w-[119px] h-[119px]"
+              alt=""
+            />
+            <img
+              src="./public/ggmb.png"
+              class="block sm:hidden w-[118px] h-[40px]"
+              alt=""
+            />
+          </div>
+        </div>
+      </section>
+      <section
+        class="w-full h-full bg-white flex flex-col items-center justify-center overflow-hidden"
+      >
+        <div
+          class="w-full xl:max-w-[1520px] h-auto bg-white px-[20px] sm:px-[180px] text-black"
+        >
+          <div
+            class="w-full pt-[90px] sm:mt-0 sm:h-[320px] grid sm:grid-cols-2 grid-cols-1 gap-11"
+          >
+            <p
+              class="font-inknut font-[900] text-black sm:leading-[65px] leading-[50px] text-[40px] sm:text-[56px] uppercase flex-1"
+            >
+              Our latest blog post
+            </p>
+            <div
+              class="font-dm-sans text-[16px] text-[#11111180] leading-[32px] flex-1 mb-[60px]"
+            >
+              Minuteness of the parts formed a great hindrance to my speed,
+              resolved, contrary to my first intention, to make the being.
+              Minuteness of the parts formed a great hindrance to my speed,
+              resolved, contrary to my first intention, to make the being.
+            </div>
+          </div>
+
+          <div
+            class="w-full grid grid-cols-1 sm:grid-cols-3 sm:gap-8 gap-16 mb-[120px]"
+          >
+            <div class="w-full space-y-6">
+              <img
+                src="./public/Rectangle.png"
+                class="w-[370px] h-[288px]"
+                alt=""
+              />
+              <p
+                class="font-roboto-condensed font-[400] text-[16px] uppercase tracking-[4px]"
+              >
+                Design
+              </p>
+              <p class="font-roboto-condensed font-[700] text-[24px] uppercase">
+                Truly it was a great journey and in it I met with many
+              </p>
+              <p class="text-[16px] font-dm-sans font-[400] text-[#11111180]">
+                14 November, 2019
+              </p>
+            </div>
+            <div class="w-full space-y-6">
+              <img
+                src="./public/Rectangle1.png"
+                class="w-[370px] h-[288px]"
+                alt=""
+              />
+              <p
+                class="font-roboto-condensed font-[400] text-[16px] uppercase tracking-[4px]"
+              >
+                Tech
+              </p>
+              <p class="font-roboto-condensed font-[700] text-[24px] uppercase">
+                What looked like a small patch of purple grass
+              </p>
+              <p class="text-[16px] font-dm-sans font-[400] text-[#11111180]">
+                14 November, 2019
+              </p>
+            </div>
+            <div class="w-full space-y-6">
+              <img src="./public/222.png" class="w-[370px] h-[288px]" alt="" />
+              <p
+                class="font-roboto-condensed font-[400] text-[16px] uppercase tracking-[4px]"
+              >
+                life
+              </p>
+              <p class="font-roboto-condensed font-[700] text-[24px] uppercase">
+                The roots were revolving small plant
+              </p>
+              <p class="text-[16px] font-dm-sans font-[400] text-[#11111180]">
+                14 November, 2019
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        id="contact"
+        class="w-full h-full bg-black flex flex-col items-center justify-center overflow-hidden"
+      >
+        <div
+          class="w-full xl:max-w-[1520px] h-auto bg-black px-[20px] sm:px-[180px] text-black sm:mb-[100px]"
+        >
+          <div
+            class="relative w-full flex items-center justify-start border-none sm:border-b-2 sm:border-white"
+          >
+            <p
+              class="text-white leading-[50px] mt-[100px] mb-[100px] font-inknut text-[40px] w-[40%] font-[900] uppercase"
+            >
+              News letter Sign Up
+            </p>
+            <div
+              class="absolute right-[0px] -bottom-[250px] sm:right-[100px] sm:-bottom-[80px] sm:w-[470px] sm:h-[288px] w-[329px] h-[288px] rounded-sm bg-[#FF564F] flex flex-col gap-8 px-[40px] py-[50px]"
+            >
+              <p
+                class="uppercase tracking-[4px] font-roboto-condensed font-[400] text-[16px] text-white"
+              >
+                get in touch
+              </p>
+              <input
+                class="p-3 rounded-sm"
+                type="text"
+                placeholder="Your email"
+              />
+              <button
+                class="w-full p-3 rounded-sm bg-[#ff635c] uppercase text-white text-[16px] font-roboto-condensed font-[700]"
+              >
+                subscribe
+              </button>
+            </div>
+          </div>
+          <div
+            class="w-full bg-black grid sm:grid-cols-4 grid-cols-1 text-white mt-[360px] sm:mt-[180px] sm:gap-0 gap-[74px]"
+          >
+            <div class="flex flex-col">
+              <p class="font-bold text-2xl mb-[50px]">AGENCY</p>
+              <p
+                class="font-dm-sans text-[16px] font-[400] text-[#FFFFFF80] mb-[10px]"
+              >
+                Agency © 2019.
+              </p>
+              <p class="font-dm-sans text-[16px] font-[400] text-[#FFFFFF80]">
+                All Rights Reserved.
+              </p>
+            </div>
+            <div class="flex flex-col mt-[8px]">
+              <p
+                class="mb-[50px] text-white font-roboto-condensed font-[400] text-[16px] uppercase tracking-[4px]"
+              >
+                Address
+              </p>
+              <p
+                class="font-dm-sans text-[16px] font-[400] text-[#FFFFFF80] mb-[10px]"
+              >
+                3899 Fusce Rd. Frederick
+              </p>
+              <p class="font-dm-sans text-[16px] text-[#FFFFFF80]">
+                Nebraska 20620
+              </p>
+              <p class="font-dm-sans text-[16px] text-white mt-[25px]">
+                info@agency.com
+              </p>
+              <p class="font-dm-sans text-[16px] text-white mt-[25px]">
+                Nebraska 20620
+              </p>
+            </div>
+            <div class="flex flex-col mt-[8px]">
+              <p
+                class="mb-[50px] text-white font-roboto-condensed font-[400] text-[16px] uppercase tracking-[4px]"
+              >
+                Menu
+              </p>
+              <div class="flex flex-col gap-[9px]">
+                <p class="font-dm-sans text-[16px] font-[400] text-white">
+                  About
+                </p>
+                <p class="font-dm-sans text-[16px] text-white">Portfolio</p>
+                <p class="font-dm-sans text-[16px] text-white">Blog</p>
+                <p class="font-dm-sans text-[16px] text-white">Testimonials</p>
+                <p class="font-dm-sans text-[16px] text-white">Contact</p>
+              </div>
+            </div>
+            <div class="">
+              <img
+                src="./public/social.png"
+                class="w-[160px] h-[48px] sm:mb-0 mb-[100px]"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          id="scrollToTopBtn"
+          class="fixed bottom-4 right-4 hidden bg-white text-black hover:text-white hover:bg-black w-[40px] h-[40px] z-[999999] rounded-full shadow-md border-2 border-black transition duration-300"
+        >
+          ↑
+        </button>
       </section>
     </main>
   </body>
+  <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
+  <script>
+    "use strict";
+    // navbar
+    const menuIcon = document.getElementById("menu-icon");
+    const sidebar = document.getElementById("sidebar");
+    const closeBtn = document.getElementById("close-btn");
+    const overlay = document.getElementById("overlay");
+
+    menuIcon.addEventListener("click", () => {
+      menuIcon.classList.add("shake");
+      setTimeout(() => {
+        menuIcon.classList.remove("shake");
+      }, 300);
+
+      sidebar.classList.remove("-translate-x-full");
+      sidebar.classList.add("translate-x-0");
+      overlay.classList.remove("hidden");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      sidebar.classList.add("-translate-x-full");
+      sidebar.classList.remove("translate-x-0");
+      overlay.classList.add("hidden");
+    });
+
+    overlay.addEventListener("click", () => {
+      sidebar.classList.add("-translate-x-full");
+      sidebar.classList.remove("translate-x-0");
+      overlay.classList.add("hidden");
+    });
+
+    // card stack
+    var tinderContainer = document.querySelector(".tinder");
+    var allCards = document.querySelectorAll(".tinder--card");
+    var nope = document.getElementById("nope");
+    var love = document.getElementById("love");
+
+    function initCards(card, index) {
+      var newCards = document.querySelectorAll(".tinder--card:not(.removed)");
+      newCards.forEach(function (card, index) {
+        card.style.zIndex = allCards.length - index;
+        card.style.transform =
+          "scale(" + (20 - index) / 20 + ") translateY(-" + 30 * index + "px)";
+        card.style.opacity = (10 - index) / 10;
+      });
+
+      tinderContainer.classList.add("loaded");
+    }
+
+    initCards();
+
+    allCards.forEach(function (el) {
+      var hammertime = new Hammer(el);
+
+      hammertime.on("pan", function (event) {
+        el.classList.add("moving");
+      });
+
+      hammertime.on("pan", function (event) {
+        if (event.deltaX === 0) return;
+        if (event.center.x === 0 && event.center.y === 0) return;
+
+        tinderContainer.classList.toggle("tinder_love", event.deltaX > 0);
+        tinderContainer.classList.toggle("tinder_nope", event.deltaX < 0);
+        var xMulti = event.deltaX * 0.03;
+        var yMulti = event.deltaY / 80;
+        var rotate = xMulti * yMulti;
+
+        event.target.style.transform =
+          "translate(" +
+          event.deltaX +
+          "px, " +
+          event.deltaY +
+          "px) rotate(" +
+          rotate +
+          "deg)";
+      });
+
+      hammertime.on("panend", function (event) {
+        el.classList.remove("moving");
+        tinderContainer.classList.remove("tinder_love");
+        tinderContainer.classList.remove("tinder_nope");
+        var moveOutWidth = document.body.clientWidth;
+        var keep =
+          Math.abs(event.deltaX) < 80 || Math.abs(event.velocityX) < 0.5;
+
+        event.target.classList.toggle("removed", !keep);
+
+        if (keep) {
+          event.target.style.transform = "";
+        } else {
+          var endX = Math.max(
+            Math.abs(event.velocityX) * moveOutWidth,
+            moveOutWidth
+          );
+          var toX = event.deltaX > 0 ? endX : -endX;
+          var endY = Math.abs(event.velocityY) * moveOutWidth;
+          var toY = event.deltaY > 0 ? endY : -endY;
+          var xMulti = event.deltaX * 0.03;
+          var yMulti = event.deltaY / 80;
+          var rotate = xMulti * yMulti;
+
+          event.target.style.transform =
+            "translate(" +
+            toX +
+            "px, " +
+            (toY + event.deltaY) +
+            "px) rotate(" +
+            rotate +
+            "deg)";
+          initCards();
+        }
+      });
+    });
+
+    function createButtonListener(love) {
+      return function (event) {
+        var cards = document.querySelectorAll(".tinder--card:not(.removed)");
+        var moveOutWidth = document.body.clientWidth * 1.5;
+
+        if (!cards.length) {
+          allCards.forEach(function (card) {
+            card.classList.remove("removed");
+            card.style.transform = "";
+          });
+          initCards();
+
+          return false;
+        }
+
+        var card = cards[0];
+        card.classList.add("removed");
+
+        if (love) {
+          card.style.transform =
+            "translate(" + moveOutWidth + "px, -100px) rotate(-30deg)";
+        } else {
+          card.style.transform =
+            "translate(-" + moveOutWidth + "px, -100px) rotate(30deg)";
+        }
+
+        initCards();
+
+        event.preventDefault();
+      };
+    }
+
+    var nopeListener = createButtonListener(false);
+    var loveListener = createButtonListener(true);
+
+    nope.addEventListener("click", nopeListener);
+    love.addEventListener("click", loveListener);
+
+    window.addEventListener("scroll", function () {
+      const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+      if (window.scrollY > 300) {
+        scrollToTopBtn.classList.remove("hidden");
+      } else {
+        scrollToTopBtn.classList.add("hidden");
+      }
+    });
+
+    document
+      .getElementById("scrollToTopBtn")
+      .addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 2,
+      spaceBetween: 30,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        614: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+      },
+    });
+  </script>
 </html>
